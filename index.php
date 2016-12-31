@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<?php 
+<?php
+
 session_start();
-if( isset($_COOKIE["uname"])){
-	$_SESSION['uname']=$_COOKIE["uname"];
-	$myusername=$_COOKIE["uname"];
-}
+
 if (isset($_SESSION['uname'])){
 $myusername=$_SESSION['uname'] ;
+}
 
-echo $_COOKIE["uname"];
 
 ?>
-
 
 <html lang="en">
 
@@ -23,22 +20,28 @@ echo $_COOKIE["uname"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Tutorna</title>
+    <title>About Tutorna</title>
+</div>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
 
-  
     <!-- Custom Fonts -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
 
 <body>
@@ -47,8 +50,7 @@ echo $_COOKIE["uname"];
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-         
-		   <div class="navbar-header">
+		 <div class="navbar-header">
 		     
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -57,21 +59,19 @@ echo $_COOKIE["uname"];
                     <span class="icon-bar"></span>
                 </button>
 				
-               <a class="navbar-brand" href="index.php">Tutorna</a>
-				 <a href="index.php"><img src="images/ututor.png" height="70px" width="70"></a>
-				</div>
-			
+                <a class="navbar-brand" href="index.html">Tutorna</a>
+				<img src="pages/images/ututor.png" height="70px" width="70">
+            </div>
             <!-- /.navbar-header -->
 
-            <ul class="nav navbar-top-links navbar-right"  align="right">
-                   
+            <ul class="nav navbar-top-links navbar-right">
                 <!-- /.dropdown -->
-                <li class="dropdown"  align="right">
+                <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="profile.php"><i class="fa fa-user fa-fw"></i>Profile</a>
+                        <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
@@ -84,60 +84,121 @@ echo $_COOKIE["uname"];
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
- 
-                       		
-								<?php
-												
-													$db=mysqli_connect('localhost','root','','ututor') or die(mysqli_error());
-													
-													
-																			$strsql="SELECT DISTINCT subject FROM subject ORDER BY id DESC";
-													$rs=mysqli_query($db,$strsql);
-													while($row=mysqli_fetch_array($rs)){
-														
-													$subject=$row['subject'];
 
-														?>
-														
-												<form method="POST" action="sub.php">
-												<input type="submit"  value="<?php  echo $subject ?>" name="sub" style="width:100%; background-color:lightblue; color:white; padding:15px 32px">
-												
-												</form>
-											
-													<?php  	} 
-
-								} 
-else{
-	
-	header("location:logout.php");
-}
-
-								?>
-                         <h2>  <a href="about.php"> Invite Friends And Earn Credit When They SIGN UP</a></h2>
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                       
+                    <li>
+                            <a href="#"> Admission update</a>
+                        </li>
+						<li>
+                            <a href="#"> Jamb Update</a>
+                        </li>
+						<li>
+                            <a href="#">WAEC Update</a>
+                        </li><li>
+                            <a href="#">NECO Update</a>
+                        </li>
+						<li>
+                            <a href="#">Scholarship Update</a>
+                        </li>
+                                        <!-- /.nav-third-level -->
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                            </ul>
                             <!-- /.nav-second-level -->
                         </li>
                     </ul>
                 </div>
+				 
                 <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
         </nav>
 
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+					<div class="page-header">
+                        
+						<h2 align="right"> Registered Users
+						
+<div style="color:blue"> <?php	$db=mysqli_connect('localhost','root','','ututor') or die(mysqli_error());
+
+$strsql="SELECT * FROM users" or die("mysqli_error()");
+$rs=mysqli_query($db,$strsql);
+while($row=mysqli_fetch_array($rs)){
+	$ee=$row['id'];
+	
+}
+echo $ee + 20;
+?> </div>
+
+<h1 >About Tutorna</h1>
+                   </div> </h2></div>
+                </div>
+                <!-- /.row -->
+						
+                                
+                                    
+                                <p>   Tutorna is an online learning platform that prepares secondary school student for their 
+								   final year exams. The topics are derived from jamb and waec syllabus and the exercises are purely from 
+								   past waec and jamb exams. The Lecture Video and the solution of the exercises are done by qualified teachers
+								   who excelled in the field. PDF files are included in some lectures.<br/><br/>
+								   Users will be shown explcit solution of the exercises when they score fifty percent or above of the exercises, this is so as to let them put
+								   effort before the solution is given to them. Some of the content are free while some need small amount of subscription fee.<br/><br/>
+								   Users can credit their account with their master card or using USSD code. <br/><br/>
+								   <a href="pages/signup.php">Sign up here</a> and you will be contacted to participate in the beta launch of Tutorna.<br/>
+								   or<br/>
+								   <a href="pages/logintutorna.php">Login here</a> to view demo
+								   							   
+								   
+								      </p>
+									  <p>
+									  Invite your family and friends to join Tutorna
+									  <form action="pages/invite.php" method="POST">
+									  <table>
+									  <tr><td>
+									 FAF Name</td><td><input type="Text" name="fafname"></td></tr>
+									 <tr><td> FAF Phone Number </td><td><input type="Text" name="fafno"></td></tr>
+									 <tr><td><div></div></td><td><input type="submit" name="send" Value="Send Invite"></td></tr>
+									 </table>
+									  </form>
+									  </p>
+									   			
+	                      </div>
+                                
+													
+											<h3><a href="pages/logintutorna.php"><button>Login</button></a></h3>	<h3><a href="pages/signup.php"><button>Sign up</button></a></h3>
+            </div>
+							<div align="center">
+							contact: 08065671336<br/>
+							Email: contact@tutorna.com.ng <br/>
+							twitter:<a href="http://www.twitter.com/tutorna_ng">@tutorna_ng</a>
+							</div>
+            <!-- /.container-fluid -
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="vendor/metisMenu/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-   
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="dist/js/sb-admin-2.js"></script>
 
 </body>
 
