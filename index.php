@@ -136,7 +136,7 @@ while($row=mysqli_fetch_array($rs)){
 	$ee=$row['id'];
 	
 }
-echo $ee + 20;
+echo $ee;
 ?> </div>
 
 <h1 >About Tutorna</h1>
